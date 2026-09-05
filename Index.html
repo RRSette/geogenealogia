@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoGenealogia | Inteligência Territorial e Documental para sua Linhagem</title>
+  
+  <!-- Meta tags para SEO e compartilhamento -->
+  <meta name="description" content="Descubra a evolução histórica de municípios, comarcas judiciais e paróquias para localizar certidões de antepassados no Brasil com precisão pericial." />
+  <meta name="keywords" content="genealogia, cartorio, paroquia, comarca, certidao, cidadania italiana, cidadania portuguesa, historia da familia, gedcom" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons para ícones vetoriais modernos -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts: Inter para interface limpa e Cinzel para toques clássicos de genealogia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Configuração das cores oficiais no Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              brown: '#523426',       // Café profundo institucional
+              sand: '#ded4c3',        // Areia/Pergaminho neutro institucional
+              darkBrown: '#3a241a',   // Variação escura para hover/contrastes
+              lightSand: '#ede7dc',   // Variação clara de fundo para cards
+              whitePure: '#ffffff'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-sand text-brand-brown min-h-screen flex flex-col selection:bg-brand-brown selection:text-brand-sand">
+
+  <!-- ========================================== -->
+  <!-- NAVBAR / CABEÇALHO PRINCIPAL -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-brand-sand/90 backdrop-blur-md border-b border-brand-brown/15 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logotipo Institucional -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-lg bg-brand-brown text-brand-sand flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
+          <i data-lucide="compass" class="w-6 h-6"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-xl tracking-tight text-brand-brown leading-tight">
+            GeoGenealogia
+          </span>
+          <span class="text-[11px] uppercase tracking-widest text-brand-brown/70 font-semibold">
+            Inteligência Territorial
+          </span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#ferramentas" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+          Ferramentas
+        </a>
+        <a href="#como-funciona" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+          O Problema Histórico
+        </a>
+        <a href="#ebook" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+          Guias e E-books
+        </a>
+        <a href="#faq" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+          Perguntas Frequentes
+        </a>
+      </nav>
+
+      <!-- Botão de Ação Direta (CTA Navbar) -->
+      <div class="hidden sm:flex items-center">
+        <a href="#ferramentas" class="inline-flex items-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow">
+          <span>Acessar Ferramentas</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Botão Menu Mobile -->
+      <div class="md:hidden flex items-center">
+        <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-brand-brown hover:bg-brand-brown/10 transition">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Menu Dropdown Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-brown/15 bg-brand-lightSand px-4 pt-3 pb-5 space-y-3">
+      <a href="#ferramentas" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+        Ferramentas
+      </a>
+      <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+        O Problema Histórico
+      </a>
+      <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+        Guias e E-books
+      </a>
+      <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+        Perguntas Frequentes
+      </a>
+      <div class="pt-2">
+        <a href="#ferramentas" class="mobile-link flex items-center justify-center gap-2 w-full bg-brand-brown text-brand-sand px-4 py-2.5 rounded-lg text-sm font-semibold">
+          <span>Acessar Ferramentas</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- CORPO PRINCIPAL -->
+  <!-- ========================================== -->
+  <main class="flex-grow">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+      <div class="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#523426_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+              <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
+              <span>Perícia Territorial e Histórica</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-brown leading-tight">
+              Pare de procurar certidões no <span class="underline decoration-brand-brown/40 underline-offset-8">cartório errado</span>.
+            </h1>
+
+            <p class="text-base sm:text-lg text-brand-brown/85 font-normal leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              O Brasil desmembrou centenas de municípios ao longo dos séculos. Descubra com rigor onde estavam subordinadas as paróquias, comarcas e circunscrições cartoriais no <strong>ano exato</strong> em que o seu antepassado nasceu, casou ou faleceu.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#ferramentas" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5">
+                <i data-lucide="search" class="w-4 h-4"></i>
+                <span>Consultar Jurisdição Agora</span>
+              </a>
+
+              <a href="#como-funciona" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm border border-brand-brown/30 text-brand-brown hover:bg-brand-brown/10 transition-colors">
+                <span>Entenda o Desmembramento</span>
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+              </a>
+            </div>
+
+            <div class="pt-6 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-brand-brown/75 font-medium border-t border-brand-brown/15">
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-brown"></i>
+                <span>Paróquias e Cúrias (Pré-1889)</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-brown"></i>
+                <span>Registro Civil & Comarcas (Pós-1889)</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-brand-brown"></i>
+                <span>Precisão Histórica</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="bg-brand-lightSand/90 border border-brand-brown/20 rounded-2xl p-6 sm:p-7 shadow-xl backdrop-blur-sm relative">
+              <div class="flex items-center justify-between border-b border-brand-brown/15 pb-4 mb-5">
+                <div class="flex items-center gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-amber-700"></div>
+                  <span class="text-xs font-semibold tracking-wider uppercase text-brand-brown/70">Exemplo Prático</span>
+                </div>
+                <span class="text-xs font-mono font-medium px-2 py-0.5 rounded bg-brand-sand text-brand-brown">Ano: 1885</span>
+              </div>
+
+              <div class="space-y-4 text-sm">
+                <div class="p-3.5 rounded-xl bg-red-950/5 border border-red-900/15">
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="x-circle" class="w-4 h-4 text-red-800 mt-0.5 shrink-0"></i>
+                    <div>
+                      <p class="font-semibold text-xs text-red-900">Onde a maioria busca (e recebe certidão negativa):</p>
+                      <p class="text-xs text-brand-brown/80 mt-0.5">Cartório de Registro Civil de Agudos/SP.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-emerald-950/5 border border-emerald-900/15">
+                  <div class="flex items-start gap-2.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-800 mt-0.5 shrink-0"></i>
+                    <div>
+                      <p class="font-semibold text-xs text-emerald-900">O que o GeoGenealogia revela em segundos:</p>
+                      <p class="text-xs text-brand-brown/90 mt-0.5">
+                        Em 1885, o território pertencia à Freguesia de <strong>Lençóis Paulista</strong> e comarca de <strong>Botucatu</strong>. O registro não é civil, mas sim <strong>batismo católico</strong> na Paróquia de Sant'Ana.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-brand-brown/15 flex items-center justify-between text-xs text-brand-brown/70">
+                <span>Economia de meses de busca</span>
+                <span class="font-semibold text-brand-brown">100% embasado na lei</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: O PROBLEMA HISTÓRICO / COMO FUNCIONA -->
+    <section id="como-funciona" class="py-20 bg-brand-lightSand/60 border-y border-brand-brown/15 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+            <i data-lucide="git-branch" class="w-3.5 h-3.5"></i>
+            <span>A Realidade dos Registros no Brasil</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-brown">
+            Por que suas certidões não estão onde você imagina?
+          </h2>
+          <p class="text-brand-brown/80 text-base leading-relaxed">
+            Mais de 70% das buscas por certidões falham não porque o registro se perdeu, mas porque foi procurado no município de hoje — e não na jurisdição vigente na época em que o fato aconteceu.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-brown text-brand-sand flex items-center justify-center shadow-sm">
+                <i data-lucide="map" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-brand-brown">
+                1. Desmembramentos Territoriais
+              </h3>
+              <p class="text-sm text-brand-brown/80 leading-relaxed">
+                Um município atual pode ter sido distrito de outro há 60 anos, vila de uma terceira localidade há 100 anos e subordinado a uma capitania histórica no período colonial. Os livros civis e notariais permanecem custodiados no <strong>município-mãe</strong> original.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-brown/15 flex items-center gap-2 text-xs font-semibold text-brand-brown">
+              <i data-lucide="info" class="w-4 h-4"></i>
+              <span>Evita certidões negativas inúteis</span>
+            </div>
+          </div>
+
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-brown text-brand-sand flex items-center justify-center shadow-sm">
+                <i data-lucide="church" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-brand-brown">
+                2. O Marco Divisor de 1888/1889
+              </h3>
+              <p class="text-sm text-brand-brown/80 leading-relaxed">
+                Antes do Decreto nº 9.886 de 1888 e da instauração formal do Registro Civil em 1889, o Estado brasileiro não registrava nascimentos, casamentos e óbitos civis. O valor jurídico recaía sobre os <strong>assentos paroquiais da Igreja Católica</strong> (batismos, matrimônios e sepultamentos).
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-brown/15 flex items-center gap-2 text-xs font-semibold text-brand-brown">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+              <span>Define se a busca é civil ou religiosa</span>
+            </div>
+          </div>
+
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-7 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+            <div class="space-y-4">
+              <div class="w-12 h-12 rounded-xl bg-brand-brown text-brand-sand flex items-center justify-center shadow-sm">
+                <i data-lucide="library" class="w-6 h-6"></i>
+              </div>
+              <h3 class="font-serif font-bold text-lg text-brand-brown">
+                3. Custódia em Arquivos & Cúrias
+              </h3>
+              <p class="text-sm text-brand-brown/80 leading-relaxed">
+                Mesmo sabendo a paróquia ou comarca de origem, muitos livros com mais de 70 a 100 anos foram transferidos para <strong>Cúrias Diocesanas</strong> centralizadas ou <strong>Arquivos Públicos Estaduais</strong>. O GeoGenealogia aponta o órgão custodiante correto hoje.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-brand-brown/15 flex items-center gap-2 text-xs font-semibold text-brand-brown">
+              <i data-lucide="navigation" class="w-4 h-4"></i>
+              <span>Rota direta até a pasta física do acervo</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-12 bg-brand-brown text-brand-sand rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
+          <div class="space-y-2 text-center sm:text-left">
+            <h4 class="font-serif font-bold text-lg sm:text-xl">
+              Nossa inteligência sintetiza séculos de leis e divisões territoriais
+            </h4>
+            <p class="text-sm text-brand-sand/80 max-w-2xl">
+              Em vez de vasculhar dezenas de leis provinciais e decretos no Diário Oficial, você informa a localidade e o ano do evento, e a plataforma entrega a rota documental pronta.
+            </p>
+          </div>
+          <a href="#ferramentas" class="shrink-0 bg-brand-sand text-brand-brown hover:bg-whitePure px-6 py-3 rounded-xl font-semibold text-sm transition-colors shadow">
+            Ver Ferramentas
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO: VITRINE DE FERRAMENTAS -->
+    <section id="ferramentas" class="py-20 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+            <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+            <span>Nossas Soluções Especializadas</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-brown">
+            Ferramentas Criadas para a Realidade Histórica do Brasil
+          </h2>
+          <p class="text-brand-brown/80 text-base leading-relaxed">
+            Escolha o formato ideal para sua investigação genealógica: consulte eventos pontuais com precisão ou audite sua árvore inteira em lote.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+          
+          <!-- CARD 1: GeoGenealogiaBR -->
+          <div class="bg-brand-lightSand/80 border-2 border-brand-brown/30 rounded-3xl p-8 sm:p-9 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:border-brand-brown/60 transition-colors">
+            <div class="absolute top-6 right-6">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-900/10 text-emerald-900 border border-emerald-800/20 text-xs font-bold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                Disponível Agora
+              </span>
+            </div>
+
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-brand-brown text-brand-sand flex items-center justify-center shadow-md mb-6">
+                <i data-lucide="map-pin" class="w-7 h-7"></i>
+              </div>
+
+              <h3 class="font-serif text-2xl font-bold text-brand-brown mb-3">
+                GeoGenealogiaBR
+              </h3>
+              
+              <p class="text-sm text-brand-brown/85 leading-relaxed mb-6">
+                O motor pericial para consultas pontuais. Informe o <strong>município (ou bairro)</strong> e o <strong>ano</strong> do fato e receba na hora o laudo de reconstituição territorial com a indicação exata de comarcas, cartórios, paróquias e arquivos custodiantes.
+              </p>
+
+              <div class="space-y-3 pt-4 border-t border-brand-brown/15 text-sm">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown shrink-0"></i>
+                  <span>Reconstituição retroativa do período colonial ao contemporâneo</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown shrink-0"></i>
+                  <span>Suporte a bairros e cemitérios para capitais e grandes centros</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown shrink-0"></i>
+                  <span>Emissão de laudo técnico fundamentado para anexar a pedidos</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown shrink-0"></i>
+                  <span>Acesso flexível via recarga avulsa de consultas</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-8 mt-6 border-t border-brand-brown/15">
+              <a href="#ferramentas" class="w-full inline-flex items-center justify-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all group-hover:shadow-lg">
+                <span>Iniciar Consulta no GeoGenealogiaBR</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- CARD 2: GeoAudit -->
+          <div class="bg-brand-sand border border-brand-brown/25 rounded-3xl p-8 sm:p-9 flex flex-col justify-between shadow-sm relative overflow-hidden">
+            <div class="absolute top-6 right-6">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown border border-brand-brown/20 text-xs font-bold uppercase tracking-wider">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                Em Breve
+              </span>
+            </div>
+
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-brand-brown/15 text-brand-brown flex items-center justify-center mb-6">
+                <i data-lucide="file-check-2" class="w-7 h-7"></i>
+              </div>
+
+              <h3 class="font-serif text-2xl font-bold text-brand-brown mb-3">
+                GeoAudit
+              </h3>
+              
+              <p class="text-sm text-brand-brown/80 leading-relaxed mb-6">
+                Auditoria inteligente de arquivos <strong>GEDCOM (.ged)</strong>. Importe sua árvore genealógica para higienizar toponímias arcaicas, detectar anacronismos cronológicos e gerar em lote uma matriz completa de pedidos de certidão.
+              </p>
+
+              <div class="space-y-3 pt-4 border-t border-brand-brown/15 text-sm text-brand-brown/85">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown/70 shrink-0"></i>
+                  <span>Leitura instantânea de árvores exportadas (FamilySearch, MyHeritage)</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown/70 shrink-0"></i>
+                  <span>Identificação e desambiguação de cidades homônimas e nomes arcaicos</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown/70 shrink-0"></i>
+                  <span>Geração em lote de matriz de ofícios para cartórios e cúrias</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="check" class="w-4 h-4 text-brand-brown/70 shrink-0"></i>
+                  <span>Checklist contínuo de status dos pedidos de certidão</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-8 mt-6 border-t border-brand-brown/15">
+              <button type="button" disabled class="w-full inline-flex items-center justify-center gap-2 bg-brand-brown/15 text-brand-brown/70 cursor-not-allowed px-6 py-3.5 rounded-xl font-semibold text-sm">
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                <span>Em Fase de Homologação</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO: TRIPWIRE / E-BOOKS E GUIAS PRÁTICOS -->
+    <section id="ebook" class="py-20 bg-brand-lightSand/50 border-t border-brand-brown/15 relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+            <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+            <span>Biblioteca do Pesquisador</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-brown">
+            Guias Metodológicos para Cada Etapa da sua Busca
+          </h2>
+          <p class="text-brand-brown/80 text-base leading-relaxed">
+            Desenvolvidos para tirar você das dúvidas e entregar métodos de investigação histórica comprovados. Adquira os manuais modulares ou acesse a obra definitiva.
+          </p>
+        </div>
+
+        <!-- DESTAQUE PRINCIPAL: O CÓDIGO GENEALÓGICO -->
+        <div class="mb-16 bg-brand-brown text-brand-sand rounded-3xl p-8 sm:p-10 shadow-xl border border-brand-brown/30 relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-sand/5 rounded-full pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-8 space-y-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-sand/15 text-brand-sand text-xs font-semibold uppercase tracking-wider border border-brand-sand/20">
+                <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                <span>Edição Definitiva e Completa</span>
+              </div>
+              
+              <h3 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-brand-sand leading-tight">
+                O Código Genealógico
+              </h3>
+              
+              <p class="text-sm sm:text-base text-brand-sand/85 leading-relaxed">
+                A reunião integral de todos os métodos, formulários e táticas periciais de pesquisa[cite: 5]. Do recolhimento das primeiras memórias em casa à leitura de registros em cartórios, dioceses, bases internacionais de imigrantes e preservação perpétua da história familiar[cite: 5].
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-brand-sand/90">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-sand shrink-0"></i>
+                  <span>Inclui os 4 guias em volume único</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-sand shrink-0"></i>
+                  <span>Modelos de Fichas e Registros de Grupo</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-sand shrink-0"></i>
+                  <span>Roteiro de arquivos físicos e acervos online</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-sand shrink-0"></i>
+                  <span>Método de superação de registros perdidos</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lg:col-span-4 bg-brand-sand text-brand-brown rounded-2xl p-6 sm:p-7 text-center shadow-lg border border-brand-brown/15">
+              <span class="text-xs uppercase font-bold tracking-widest text-brand-brown/70 block">Acesso Imediato em PDF</span>
+              <div class="my-3">
+                <span class="text-xs text-brand-brown/70 line-through">De R$ 67,90</span>
+                <div class="text-3xl sm:text-4xl font-extrabold text-brand-brown mt-0.5">R$ 29,90</div>
+                <span class="text-[11px] text-brand-brown/80 font-medium">Pagamento único via Mercado Pago</span>
+              </div>
+
+              <!-- LINK MERCADO PAGO: EBOOK COMPLETO -->
+              <a href="https://mpago.la/SEU_LINK_EBOOK_COMPLETO" target="_blank" rel="noopener noreferrer" class="mt-4 w-full inline-flex items-center justify-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-5 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-[1.02]">
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                <span>Comprar Edição Completa</span>
+              </a>
+
+              <div class="mt-4 flex items-center justify-center gap-2 text-[11px] text-brand-brown/70">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                <span>Liberação instantânea após aprovação</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SUBTÍTULO: GUIAS MODULARES -->
+        <div class="mb-8">
+          <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-brown">
+            Prefere começar por módulo específico?
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-brown/75">
+            Adquira o guia exato para a fase em que sua pesquisa se encontra hoje por um valor simbólico de entrada:
+          </p>
+        </div>
+
+        <!-- GRID DOS 4 E-BOOKS MODULARES -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- E-BOOK 001 -->
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-brand-brown/10 text-brand-brown">Vol. 001</span>
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-brown/70">Iniciante</span>
+              </div>
+              
+              <h4 class="font-serif font-bold text-lg text-brand-brown mb-2">
+                O Mapa da Pesquisa Genealógica
+              </h4>
+              
+              <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
+                O ponto de partida essencial. Aprenda a garimpar pistas em documentos familiares, realizar entrevistas com parentes, organizar a Ficha de Detalhe da Pessoa e escolher o software ideal[cite: 4].
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-brand-brown/15">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs text-brand-brown/70">Valor simbólico</span>
+                <span class="text-xl font-bold text-brand-brown">R$ 9,90</span>
+              </div>
+              <!-- LINK MERCADO PAGO: EBOOK 001 -->
+              <a href="https://mpago.la/SEU_LINK_EBOOK_001" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1.5 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-4 py-2.5 rounded-lg font-semibold text-xs transition">
+                <span>Adquirir Guia 001</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- E-BOOK 002 -->
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-brand-brown/10 text-brand-brown">Vol. 002</span>
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-brown/70">Intermediário</span>
+              </div>
+              
+              <h4 class="font-serif font-bold text-lg text-brand-brown mb-2">
+                Detetive de Registros
+              </h4>
+              
+              <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
+                Domine a busca em arquivos reais. Navegue pelos grandes acervos digitais (FamilySearch, Arquivos Públicos, IBGE) e aprenda as regras práticas para pesquisar presencialmente em cartórios e cúrias[cite: 3].
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-brand-brown/15">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs text-brand-brown/70">Valor simbólico</span>
+                <span class="text-xl font-bold text-brand-brown">R$ 9,90</span>
+              </div>
+              <!-- LINK MERCADO PAGO: EBOOK 002 -->
+              <a href="https://mpago.la/SEU_LINK_EBOOK_002" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1.5 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-4 py-2.5 rounded-lg font-semibold text-xs transition">
+                <span>Adquirir Guia 002</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- E-BOOK 003 -->
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-brand-brown/10 text-brand-brown">Vol. 003</span>
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-brown/70">Avançado</span>
+              </div>
+              
+              <h4 class="font-serif font-bold text-lg text-brand-brown mb-2">
+                A Chave do Passado
+              </h4>
+              
+              <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
+                Táticas para quebrar bloqueios de pesquisa. Supere problemas com nomes comuns, encontre provas por registros indiretos (inventários e terras), rastreie antepassados imigrantes e blinde seu backup[cite: 2].
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-brand-brown/15">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs text-brand-brown/70">Valor simbólico</span>
+                <span class="text-xl font-bold text-brand-brown">R$ 9,90</span>
+              </div>
+              <!-- LINK MERCADO PAGO: EBOOK 003 -->
+              <a href="https://mpago.la/SEU_LINK_EBOOK_003" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1.5 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-4 py-2.5 rounded-lg font-semibold text-xs transition">
+                <span>Adquirir Guia 003</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- E-BOOK 004 -->
+          <div class="bg-brand-sand border border-brand-brown/20 rounded-2xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-mono font-bold px-2 py-1 rounded bg-brand-brown/10 text-brand-brown">Vol. 004</span>
+                <span class="text-[11px] uppercase tracking-wider font-semibold text-brand-brown/70">Legado</span>
+              </div>
+              
+              <h4 class="font-serif font-bold text-lg text-brand-brown mb-2">
+                O Legado Vivo
+              </h4>
+              
+              <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
+                Transforme dados em histórias. Descubra como aplicar técnicas de storytelling, estruturar o acervo físico e digital, engajar novas gerações da família e participar de projetos comunitários[cite: 1].
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-brand-brown/15">
+              <div class="flex items-baseline justify-between mb-3">
+                <span class="text-xs text-brand-brown/70">Valor simbólico</span>
+                <span class="text-xl font-bold text-brand-brown">R$ 9,90</span>
+              </div>
+              <!-- LINK MERCADO PAGO: EBOOK 004 -->
+              <a href="https://mpago.la/SEU_LINK_EBOOK_004" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1.5 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-4 py-2.5 rounded-lg font-semibold text-xs transition">
+                <span>Adquirir Guia 004</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SEÇÃO: PERGUNTAS FREQUENTES (FAQ) -->
+    <!-- ========================================== -->
+    <section id="faq" class="py-20 border-t border-brand-brown/15 relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+            <span>Tire Suas Dúvidas</span>
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-brand-brown">
+            Perguntas Frequentes
+          </h2>
+          <p class="text-brand-brown/80 text-sm">
+            Entenda como funciona nossa inteligência de mapeamento e entrega de materiais.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          
+          <!-- Item FAQ 1 -->
+          <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
+            <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
+              <span class="text-sm sm:text-base">Por que não posso procurar a certidão diretamente no município atual?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-brand-brown/85 leading-relaxed border-t border-brand-brown/10">
+              Muitas cidades brasileiras foram emancipadas recentemente. Se um antepassado nasceu em 1910 em um local que só virou município em 1950, os livros de registro civil da época ficaram arquivados no cartório do município de onde ele se desmembrou (o município-mãe). O GeoGenealogia identifica exatamente qual era essa jurisdição no ano exato do evento.
+            </div>
+          </div>
+
+          <!-- Item FAQ 2 -->
+          <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
+            <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
+              <span class="text-sm sm:text-base">Como são entregues os e-books após a compra?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-brand-brown/85 leading-relaxed border-t border-brand-brown/10">
+              O pagamento é processado com total segurança pelo Mercado Pago via PIX ou cartão. Assim que o pagamento é confirmado, você é redirecionado imediatamente para o download do arquivo em formato PDF de alta qualidade, pronto para leitura em computadores, tablets ou smartphones.
+            </div>
+          </div>
+
+          <!-- Item FAQ 3 -->
+          <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
+            <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
+              <span class="text-sm sm:text-base">O GeoGenealogia localiza a certidão física para mim?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-brand-brown/85 leading-relaxed border-t border-brand-brown/10">
+              Nós fornecemos o mapa pericial completo: indicamos a comarca correta, o cartório competente, a paróquia histórica e o arquivo público ou cúria onde o acervo está custodiado. Com essas informações em mãos, você economiza meses de pedidos frustrados e sabe exatamente onde solicitar sua certidão.
+            </div>
+          </div>
+
+          <!-- Item FAQ 4 -->
+          <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
+            <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
+              <span class="text-sm sm:text-base">A plataforma atende eventos anteriores à Proclamação da República?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 shrink-0 transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content hidden px-6 pb-5 pt-1 text-xs sm:text-sm text-brand-brown/85 leading-relaxed border-t border-brand-brown/10">
+              Sim! Para registros anteriores a 1889, o motor reconstitui as freguesias e paróquias da Igreja Católica da época, identificando a diocese responsável e a cúria que custodia os livros de batismo, casamento religioso e sepultamento.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- RODAPÉ INSTITUCIONAL -->
+  <!-- ========================================== -->
+  <footer class="bg-brand-brown text-brand-sand border-t border-brand-brown/30 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+        
+        <!-- Coluna Institucional -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-brand-sand text-brand-brown flex items-center justify-center shadow">
+              <i data-lucide="compass" class="w-5 h-5"></i>
+            </div>
+            <span class="font-serif font-bold text-xl tracking-tight text-brand-sand">
+              GeoGenealogia
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-brand-sand/80 leading-relaxed max-w-sm">
+            Inteligência territorial e documental para pesquisadores de história da família, escritórios de cidadania e genealogistas em todo o Brasil.
+          </p>
+          <div class="pt-2 text-xs text-brand-sand/60">
+            © 2026 geogenealogia.com.br — Todos os direitos reservados.
+          </div>
+        </div>
+
+        <!-- Links Rápidos -->
+        <div class="md:col-span-3 space-y-3 text-xs sm:text-sm">
+          <h4 class="font-serif font-bold text-brand-sand text-sm uppercase tracking-wider mb-2">
+            Navegação
+          </h4>
+          <ul class="space-y-2 text-brand-sand/80">
+            <li><a href="#ferramentas" class="hover:text-whitePure transition">Ferramentas</a></li>
+            <li><a href="#como-funciona" class="hover:text-whitePure transition">O Problema Histórico</a></li>
+            <li><a href="#ebook" class="hover:text-whitePure transition">Biblioteca de E-books</a></li>
+            <li><a href="#faq" class="hover:text-whitePure transition">Perguntas Frequentes</a></li>
+          </ul>
+        </div>
+
+        <!-- Segurança e Transparência -->
+        <div class="md:col-span-4 space-y-3 text-xs sm:text-sm">
+          <h4 class="font-serif font-bold text-brand-sand text-sm uppercase tracking-wider mb-2">
+            Pagamento Seguro
+          </h4>
+          <p class="text-brand-sand/80 text-xs leading-relaxed">
+            Transações processadas via <strong>Mercado Pago</strong> com criptografia de ponta a ponta e recebimento imediato via PIX e cartão de crédito.
+          </p>
+          <div class="pt-2 flex items-center gap-3 text-brand-sand/70 text-xs">
+            <i data-lucide="shield-check" class="w-4 h-4 text-brand-sand"></i>
+            <span>Ambiente 100% Protegido</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra Inferior de Direitos e Termos -->
+      <div class="mt-12 pt-8 border-t border-brand-sand/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-sand/60">
+        <div>
+          Desenvolvido com rigor histórico e metodológico.
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-brand-sand transition">Termos de Uso</a>
+          <a href="#" class="hover:text-brand-sand transition">Privacidade</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Script de Inicialização dos Ícones, Menu Mobile e Accordion FAQ -->
+  <script>
+    // Inicializa os ícones Lucide
+    lucide.createIcons();
+
+    // Controle do menu mobile
+    const btnMobile = document.getElementById('btn-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    btnMobile.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Controle do Accordion de Perguntas Frequentes (FAQ)
+    const faqButtons = document.querySelectorAll('.faq-toggle');
+
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('i');
+        const isCurrentlyHidden = content.classList.contains('hidden');
+
+        // Fecha todos os outros itens abertos
+        document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.faq-toggle i').forEach(el => el.classList.remove('rotate-180'));
+
+        // Alterna o item clicado
+        if (isCurrentlyHidden) {
+          content.classList.remove('hidden');
+          icon.classList.add('rotate-180');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
