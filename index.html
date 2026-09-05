@@ -846,5 +846,49 @@
     });
   </script>
 
+  <script>
+    // Cole aqui a URL gerada no Google Apps Script (terminada em /exec)
+    const SCRIPT_URL = 'COLE_AQUI_A_SUA_URL_DO_WEB_APP';
+
+    // Seleciona o formulário pelo ID ou pega o primeiro form da página
+    const form = document.getElementById('form-lead') || document.querySelector('form');
+    const submitBtn = form ? form.querySelector('button[type="submit"]') || form.querySelector('button') : null;
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const originalBtnText = submitBtn ? submitBtn.textContent : 'Enviar';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+        }
+
+        const formData = new FormData(form);
+
+        try {
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+          });
+
+          alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
+          form.reset();
+        } catch (err) {
+          console.error('Falha no envio:', err);
+          alert('Houve um problema ao processar seu cadastro. Tente novamente em instantes.');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
 </body>
 </html>
