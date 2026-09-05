@@ -82,6 +82,9 @@
         <a href="#como-funciona" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
           O Problema Histórico
         </a>
+        <a href="#contato" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+          Cadastre-se
+        </a>
         <a href="#ebook" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
           Guias e E-books
         </a>
@@ -92,8 +95,8 @@
 
       <!-- Botão de Ação Direta (CTA Navbar) -->
       <div class="hidden sm:flex items-center">
-        <a href="#ferramentas" class="inline-flex items-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow">
-          <span>Acessar Ferramentas</span>
+        <a href="#contato" class="inline-flex items-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow">
+          <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
@@ -115,6 +118,9 @@
       <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
         O Problema Histórico
       </a>
+      <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+        Cadastre-se
+      </a>
       <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
         Guias e E-books
       </a>
@@ -122,8 +128,8 @@
         Perguntas Frequentes
       </a>
       <div class="pt-2">
-        <a href="#ferramentas" class="mobile-link flex items-center justify-center gap-2 w-full bg-brand-brown text-brand-sand px-4 py-2.5 rounded-lg text-sm font-semibold">
-          <span>Acessar Ferramentas</span>
+        <a href="#contato" class="mobile-link flex items-center justify-center gap-2 w-full bg-brand-brown text-brand-sand px-4 py-2.5 rounded-lg text-sm font-semibold">
+          <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
@@ -306,7 +312,7 @@
 
         <div class="mt-12 bg-brand-brown text-brand-sand rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-md">
           <div class="space-y-2 text-center sm:text-left">
-            <h4 class="font-serif font-bold text-lg sm:text-xl">
+            <h4 class="font-serif font-bold text-lg sm:xl">
               Nossa inteligência sintetiza séculos de leis e divisões territoriais
             </h4>
             <p class="text-sm text-brand-sand/80 max-w-2xl">
@@ -383,7 +389,7 @@
             </div>
 
             <div class="pt-8 mt-6 border-t border-brand-brown/15">
-              <a href="#ferramentas" class="w-full inline-flex items-center justify-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all group-hover:shadow-lg">
+              <a href="#contato" class="w-full inline-flex items-center justify-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all group-hover:shadow-lg">
                 <span>Iniciar Consulta no GeoGenealogiaBR</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -445,6 +451,73 @@
       </div>
     </section>
 
+    <!-- ========================================== -->
+    <!-- SEÇÃO: FORMULÁRIO DE CAPTURA DE LEADS -->
+    <!-- ========================================== -->
+    <section id="contato" class="py-16 bg-brand-lightSand/80 border-t border-brand-brown/15 relative">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-brand-sand border-2 border-brand-brown/20 rounded-3xl p-8 sm:p-12 shadow-xl">
+          
+          <div class="text-center max-w-xl mx-auto mb-8 space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-brown/10 text-brand-brown text-xs font-semibold uppercase tracking-wider">
+              <i data-lucide="bell" class="w-3.5 h-3.5"></i>
+              <span>Fique Atualizado</span>
+            </div>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-brand-brown">
+              Receba Guias e Atualizações Territoriais
+            </h2>
+            <p class="text-brand-brown/80 text-sm leading-relaxed">
+              Cadastre seu nome e e-mail para receber conteúdos práticos sobre localização de certidões, lançamentos de novos módulos e avisos de ferramentas.
+            </p>
+          </div>
+
+          <form id="form-lead" class="space-y-5 max-w-md mx-auto">
+            <div>
+              <label for="nome" class="block text-xs font-bold uppercase tracking-wider text-brand-brown mb-1.5">
+                Nome Completo
+              </label>
+              <input 
+                type="text" 
+                id="nome" 
+                name="nome" 
+                placeholder="Seu nome completo" 
+                required 
+                class="w-full px-4 py-3 rounded-xl border border-brand-brown/25 bg-brand-lightSand/50 text-brand-brown placeholder-brand-brown/50 focus:outline-none focus:ring-2 focus:ring-brand-brown text-sm"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-xs font-bold uppercase tracking-wider text-brand-brown mb-1.5">
+                Seu Melhor E-mail
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="nome@email.com" 
+                required 
+                class="w-full px-4 py-3 rounded-xl border border-brand-brown/25 bg-brand-lightSand/50 text-brand-brown placeholder-brand-brown/50 focus:outline-none focus:ring-2 focus:ring-brand-brown text-sm"
+              />
+            </div>
+
+            <input type="hidden" name="origem" value="Landing Page Oficial - Formulário" />
+
+            <button 
+              type="submit" 
+              id="btn-submit" 
+              class="w-full inline-flex items-center justify-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all hover:scale-[1.01]"
+            >
+              <span>Quero Receber os Conteúdos</span>
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+
+            <div id="form-feedback" class="hidden p-3 rounded-xl text-center text-xs font-semibold"></div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
     <!-- SEÇÃO: TRIPWIRE / E-BOOKS E GUIAS PRÁTICOS -->
     <section id="ebook" class="py-20 bg-brand-lightSand/50 border-t border-brand-brown/15 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -479,7 +552,7 @@
               </h3>
               
               <p class="text-sm sm:text-base text-brand-sand/85 leading-relaxed">
-                A reunião integral de todos os métodos, formulários e táticas periciais de pesquisa[cite: 5]. Do recolhimento das primeiras memórias em casa à leitura de registros em cartórios, dioceses, bases internacionais de imigrantes e preservação perpétua da história familiar[cite: 5].
+                A reunião integral de todos os métodos, formulários e táticas periciais de pesquisa. Do recolhimento das primeiras memórias em casa à leitura de registros em cartórios, dioceses, bases internacionais de imigrantes e preservação perpétua da história familiar.
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs sm:text-sm text-brand-sand/90">
@@ -551,7 +624,7 @@
               </h4>
               
               <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
-                O ponto de partida essencial. Aprenda a garimpar pistas em documentos familiares, realizar entrevistas com parentes, organizar a Ficha de Detalhe da Pessoa e escolher o software ideal[cite: 4].
+                O ponto de partida essencial. Aprenda a garimpar pistas em documentos familiares, realizar entrevistas com parentes, organizar a Ficha de Detalhe da Pessoa e escolher o software ideal.
               </p>
             </div>
 
@@ -581,7 +654,7 @@
               </h4>
               
               <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
-                Domine a busca em arquivos reais. Navegue pelos grandes acervos digitais (FamilySearch, Arquivos Públicos, IBGE) e aprenda as regras práticas para pesquisar presencialmente em cartórios e cúrias[cite: 3].
+                Domine a busca em arquivos reais. Navegue pelos grandes acervos digitais (FamilySearch, Arquivos Públicos, IBGE) e aprenda as regras práticas para pesquisar presencialmente em cartórios e cúrias.
               </p>
             </div>
 
@@ -611,7 +684,7 @@
               </h4>
               
               <p class="text-xs text-brand-brown/80 leading-relaxed mb-4">
-                Táticas para quebrar bloqueios de pesquisa. Supere problemas com nomes comuns, encontre provas por registros indiretos (inventários e terras), rastreie antepassados imigrantes e blinde seu backup[cite: 2].
+                Táticas para quebrar bloqueios de pesquisa. Supere problemas com nomes comuns, encontre provas por registros indiretos (inventários e terras), rastreie antepassados imigrantes e blinde seu backup.
               </p>
             </div>
 
@@ -769,6 +842,7 @@
           <ul class="space-y-2 text-brand-sand/80">
             <li><a href="#ferramentas" class="hover:text-whitePure transition">Ferramentas</a></li>
             <li><a href="#como-funciona" class="hover:text-whitePure transition">O Problema Histórico</a></li>
+            <li><a href="#contato" class="hover:text-whitePure transition">Receber Novidades</a></li>
             <li><a href="#ebook" class="hover:text-whitePure transition">Biblioteca de E-books</a></li>
             <li><a href="#faq" class="hover:text-whitePure transition">Perguntas Frequentes</a></li>
           </ul>
@@ -804,7 +878,7 @@
     </div>
   </footer>
 
-  <!-- Script de Inicialização dos Ícones, Menu Mobile e Accordion FAQ -->
+  <!-- Scripts: Ícones Lucide, Menus e Envio de Leads -->
   <script>
     // Inicializa os ícones Lucide
     lucide.createIcons();
@@ -844,25 +918,23 @@
         }
       });
     });
-  </script>
 
-  <script>
-    // Cole aqui a URL gerada no Google Apps Script (terminada em /exec)
+    // Integração com Google Apps Script
     const SCRIPT_URL = 'COLE_AQUI_A_SUA_URL_DO_WEB_APP';
 
-    // Seleciona o formulário pelo ID ou pega o primeiro form da página
-    const form = document.getElementById('form-lead') || document.querySelector('form');
-    const submitBtn = form ? form.querySelector('button[type="submit"]') || form.querySelector('button') : null;
+    const form = document.getElementById('form-lead');
+    const submitBtn = document.getElementById('btn-submit');
+    const feedback = document.getElementById('form-feedback');
 
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const originalBtnText = submitBtn ? submitBtn.textContent : 'Enviar';
-        if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.textContent = 'Enviando...';
-        }
+        const originalBtnHTML = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Enviando dados...</span>';
+        feedback.classList.add('hidden');
+        feedback.className = 'p-3 rounded-xl text-center text-xs font-semibold';
 
         const formData = new FormData(form);
 
@@ -873,22 +945,23 @@
             mode: 'no-cors'
           });
 
-          alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
+          feedback.textContent = 'Cadastro realizado com sucesso! Em breve entraremos em contato.';
+          feedback.classList.remove('hidden');
+          feedback.classList.add('bg-emerald-950/10', 'text-emerald-900', 'border', 'border-emerald-900/20');
+
           form.reset();
         } catch (err) {
           console.error('Falha no envio:', err);
-          alert('Houve um problema ao processar seu cadastro. Tente novamente em instantes.');
+          feedback.textContent = 'Houve um problema ao processar seu cadastro. Tente novamente.';
+          feedback.classList.remove('hidden');
+          feedback.classList.add('bg-red-950/10', 'text-red-900', 'border', 'border-red-900/20');
         } finally {
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
-          }
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+          lucide.createIcons();
         }
       });
     }
   </script>
-</body>
-</html>
-
 </body>
 </html>
