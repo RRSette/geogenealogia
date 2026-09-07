@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoGenealogiaBR | Consulta Territorial</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              brown: '#523426',
+              sand: '#ded4c3',
+              darkBrown: '#3a241a',
+              lightSand: '#ede7dc',
+              whitePure: '#ffffff'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-brand-sand text-brand-brown h-full flex flex-col overflow-hidden">
+
+  <!-- NAVBAR UNIFICADA -->
+  <header class="bg-brand-sand/95 border-b border-brand-brown/15 shadow-sm shrink-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logotipo com link de retorno à landing page -->
+      <a href="https://geogenealogia.com.br/" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-lg bg-brand-brown text-brand-sand flex items-center justify-center shadow transition-transform group-hover:scale-105">
+          <i data-lucide="compass" class="w-5 h-5"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-lg tracking-tight text-brand-brown leading-none">
+            GeoGenealogia
+          </span>
+          <span class="text-[10px] uppercase tracking-widest text-brand-brown/70 font-semibold mt-0.5">
+            GeoGenealogiaBR
+          </span>
+        </div>
+      </a>
+
+      <!-- Botão Voltar para a Landing Page -->
+      <div>
+        <a href="https://geogenealogia.com.br/" class="inline-flex items-center gap-2 text-xs font-semibold text-brand-brown hover:text-brand-darkBrown border border-brand-brown/25 hover:bg-brand-brown/10 px-3.5 py-1.5 rounded-lg transition">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          <span>Voltar ao Site Principal</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTAINER DO APP EM TELA CHEIA -->
+  <main class="flex-1 w-full relative bg-white">
+    <iframe 
+      src="https://script.google.com/macros/s/AKfycbwEBMgyXwmDLzm779vj0XpumJ-K8Fqgw9E3RQ-GmKGrgvfV7zunO1VezN7YlyWB_t39Og/exec" 
+      class="w-full h-full border-0 absolute inset-0"
+      title="GeoGenealogiaBR App"
+      allow="clipboard-write">
+    </iframe>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
