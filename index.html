@@ -959,20 +959,35 @@
     const form = document.getElementById('form-lead');
     const submitBtn = document.getElementById('btn-submit');
     const feedback = document.getElementById('form-feedback');
+    const inputNome = document.getElementById('nome');
+    const inputEmail = document.getElementById('email');
+
+    // Função para resetar e ocultar totalmente o feedback
+    function resetFeedback() {
+      if (feedback) {
+        feedback.textContent = '';
+        feedback.className = 'hidden p-3.5 rounded-xl text-center text-xs font-semibold';
+      }
+    }
+
+    // Quando o usuário volta a digitar nos campos, a mensagem antiga some na hora
+    if (inputNome) inputNome.addEventListener('input', resetFeedback);
+    if (inputEmail) inputEmail.addEventListener('input', resetFeedback);
 
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        // 1. Limpa e oculta imediatamente a mensagem anterior
+        resetFeedback();
+
         const originalBtnHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Verificando e salvando...</span>';
-        feedback.classList.add('hidden');
-        feedback.className = 'p-3.5 rounded-xl text-center text-xs font-semibold';
 
         const payload = {
-          nome: document.getElementById('nome').value.trim(),
-          email: document.getElementById('email').value.trim().toLowerCase(),
+          nome: inputNome.value.trim(),
+          email: inputEmail.value.trim().toLowerCase(),
           origem: 'Landing Page Oficial - Formulário'
         };
 
@@ -984,6 +999,7 @@
 
           const result = await response.json();
 
+          // 2. Preenche o novo feedback recebido
           feedback.textContent = result.message;
           feedback.classList.remove('hidden');
 
@@ -991,7 +1007,6 @@
             feedback.classList.add('bg-emerald-950/10', 'text-emerald-900', 'border', 'border-emerald-900/20');
             form.reset();
           } else if (result.status === 'duplicate') {
-            // Destaque âmbar/dourado institucional para e-mail repetido
             feedback.classList.add('bg-amber-500/10', 'text-amber-900', 'border', 'border-amber-700/20');
           } else {
             feedback.classList.add('bg-red-950/10', 'text-red-900', 'border', 'border-red-900/20');
