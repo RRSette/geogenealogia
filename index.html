@@ -111,54 +111,54 @@
   <!-- ========================================== -->
   <!-- NAVBAR / CABEÇALHO PRINCIPAL -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-50 bg-brand-sand/90 backdrop-blur-md border-b border-brand-brown/15 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <header class="sticky top-0 z-50 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#523426]/15 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
       
-      <!-- Logotipo Institucional -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-lg bg-brand-brown text-brand-sand flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
-          <i data-lucide="compass" class="w-6 h-6"></i>
+      <!-- Logotipo Institucional com blindagem contra esmagamento -->
+      <a href="#" class="flex items-center gap-3 shrink-0 group">
+        <div class="w-10 h-10 rounded-lg bg-[#523426] text-[#ded4c3] flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
+          <i data-lucide="compass" class="w-5 h-5"></i>
         </div>
         <div class="flex flex-col">
-          <span class="font-serif font-bold text-xl tracking-tight text-brand-brown leading-tight">
+          <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-[#523426] leading-tight">
             GeoGenealogia
           </span>
-          <span class="text-[11px] uppercase tracking-widest text-brand-brown/70 font-semibold">
+          <span class="text-[10px] uppercase tracking-widest text-[#523426]/70 font-semibold">
             Inteligência Territorial
           </span>
         </div>
       </a>
 
-      <!-- Menu Desktop -->
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="#ferramentas" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+      <!-- Menu Desktop (1 Linha Garantida + Espaçamento Equilibrado) -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
+        <a href="#ferramentas" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
           Ferramentas
         </a>
-        <a href="#como-funciona" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
-          O Problema Histórico
+        <a href="#como-funciona" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+          Como Funciona
         </a>
-        <a href="#contato" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
+        <a href="#contato" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
           Cadastre-se
         </a>
-        <a href="#ebook" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
-          Guias e E-books
+        <a href="#ebook" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+          E-books
         </a>
-        <a href="#faq" class="text-brand-brown/85 hover:text-brand-brown transition-colors">
-          Perguntas Frequentes
+        <a href="#faq" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+          Dúvidas
         </a>
       </nav>
 
       <!-- Botão de Ação Direta (CTA Navbar) -->
-      <div class="hidden sm:flex items-center">
-        <a href="#contato" class="inline-flex items-center gap-2 bg-brand-brown text-brand-sand hover:bg-brand-darkBrown px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow">
+      <div class="hidden sm:flex items-center shrink-0">
+        <a href="#contato" class="inline-flex items-center gap-2 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow whitespace-nowrap">
           <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
 
       <!-- Botão Menu Mobile -->
-      <div class="md:hidden flex items-center">
-        <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-brand-brown hover:bg-brand-brown/10 transition">
+      <div class="lg:hidden flex items-center">
+        <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-[#523426] hover:bg-[#523426]/10 transition">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -166,24 +166,24 @@
     </div>
 
     <!-- Menu Dropdown Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-brown/15 bg-brand-lightSand px-4 pt-3 pb-5 space-y-3">
-      <a href="#ferramentas" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-[#523426]/15 bg-[#ede7dc] px-4 pt-3 pb-5 space-y-3">
+      <a href="#ferramentas" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
         Ferramentas
       </a>
-      <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
-        O Problema Histórico
+      <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+        Como Funciona
       </a>
-      <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
+      <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
         Cadastre-se
       </a>
-      <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
-        Guias e E-books
+      <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+        E-books
       </a>
-      <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-brand-brown hover:bg-brand-sand">
-        Perguntas Frequentes
+      <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+        Dúvidas Frequentes
       </a>
       <div class="pt-2">
-        <a href="#contato" class="mobile-link flex items-center justify-center gap-2 w-full bg-brand-brown text-brand-sand px-4 py-2.5 rounded-lg text-sm font-semibold">
+        <a href="#contato" class="mobile-link flex items-center justify-center gap-2 w-full bg-[#523426] text-[#ded4c3] px-4 py-2.5 rounded-lg text-sm font-semibold">
           <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
