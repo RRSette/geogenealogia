@@ -56,7 +56,7 @@
 <body class="bg-brand-sand text-brand-brown min-h-screen flex flex-col selection:bg-brand-brown selection:text-brand-sand">
 
   <!-- ========================================== -->
-  <!-- NAVBAR SIMPLIFICADA -->
+  <!-- NAVBAR COM BOTÃO DIRETO DE EXCLUSÃO LGPD -->
   <!-- ========================================== -->
   <header class="sticky top-0 z-50 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#523426]/15 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
@@ -76,12 +76,19 @@
         </div>
       </a>
 
-      <!-- Ações de Retorno -->
-      <div class="flex items-center gap-3">
-        <a href="/" class="text-xs sm:text-sm font-semibold text-[#523426]/80 hover:text-[#523426] transition px-3 py-2">
-          ← Página Inicial
+      <!-- Ações de Retorno e Botão de Exclusão no Topo -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="/" class="hidden md:inline-block text-xs sm:text-sm font-semibold text-[#523426]/80 hover:text-[#523426] transition px-2 py-1">
+          ← Início
         </a>
-        <a href="/geogenealogiabr" class="inline-flex items-center gap-2 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm">
+
+        <!-- Botão Idêntico ao da Barra Superior -->
+        <a href="/geogenealogiabr?action=delete_account" class="inline-flex items-center gap-1.5 bg-whitePure border border-[#523426]/25 hover:border-red-800 text-[#8f7467] hover:text-red-800 px-3 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm">
+          <span>🗑️</span>
+          <span>Excluir Meus Dados</span>
+        </a>
+
+        <a href="/geogenealogiabr" class="inline-flex items-center gap-1.5 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all shadow-sm">
           <span>Acessar Plataforma</span>
           <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </a>
@@ -135,7 +142,7 @@
             <h2>Quem Somos e a Quem se Aplica Esta Política</h2>
           </div>
           <p>
-            Esta Política de Privacidade disciplina o tratamento de dados pessoais no âmbito da plataforma <strong>GeoGenealogia</strong> (site web <em>geogenealogia.com.br</em> e ferramenta <em>GeoGenealogiaBR</em>), qualificando-se este como Controlador de Dados nos termos da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei Federal nº 13.709/2018).
+            Esta Política de Privacidade disciplina o tratamento de dados pessoais no âmbito da plataforma <strong>GeoGenealogia</strong> (sítio web <em>geogenealogia.com.br</em> e ferramenta <em>GeoGenealogiaBR</em>), qualificando-se este como Controlador de Dados nos termos da Lei Geral de Proteção de Dados Pessoais (LGPD - Lei Federal nº 13.709/2018).
           </p>
           <p>
             Este documento se aplica a todos os usuários que acessam nossas páginas institucionais, realizam cadastros para recebimento de informativos ou utilizam nosso motor de reconstituição territorial e histórica.
@@ -262,20 +269,29 @@
             Você, como titular de dados pessoais, tem direito pleno de obter a qualquer momento e mediante requisição: confirmação da existência de tratamento, acesso aos seus dados, correção de dados incompletos ou inexatos, anonimização, portabilidade e <strong>eliminação definitiva dos seus dados pessoais</strong>.
           </p>
           
-          <div class="p-4 bg-brand-sand/70 rounded-xl border border-brand-brown/20 space-y-3">
+          <div class="p-5 bg-brand-sand/70 rounded-xl border border-brand-brown/20 space-y-4">
             <div class="flex items-center gap-2 text-brand-brown font-bold text-sm">
               <i data-lucide="user-x" class="w-4 h-4"></i>
-              <span>Como exercer o direito de exclusão imediata:</span>
+              <span>Autoatendimento para Exclusão Imediata:</span>
             </div>
             <p class="text-xs sm:text-sm text-brand-brown/90 leading-relaxed">
-              Disponibilizamos um mecanismo automatizado de autoatendimento diretamente dentro da plataforma <strong>GeoGenealogiaBR</strong>. Ao acionar o botão de exclusão de conta e confirmar sua decisão:
+              Disponibilizamos um mecanismo automatizado de autoatendimento para eliminação de dados. Ao acionar o botão de exclusão e confirmar sua decisão na plataforma:
             </p>
             <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm text-brand-brown/90">
-              <li>Seu e-mail, identificador de aparelho e saldo são removidos ou anonimizados da tabela de usuários;</li>
+              <li>Seu e-mail, identificador de aparelho e saldo são removidos permanentemente da tabela de usuários;</li>
               <li>O histórico de laudos gerados anteriormente perde a vinculação com a sua identidade;</li>
               <li>O armazenamento local do seu navegador é limpo, encerrando a sessão instantaneamente.</li>
             </ul>
-            <p class="text-xs text-brand-brown/80 pt-1">
+
+            <!-- Botão de Ação em Destaque dentro da Seção 6 -->
+            <div class="pt-2">
+              <a href="/geogenealogiabr?action=delete_account" class="inline-flex items-center gap-2 bg-red-800 hover:bg-red-900 text-whitePure px-5 py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-[1.01]">
+                <span>🗑️</span>
+                <span>Excluir Minha Conta e Dados Agora</span>
+              </a>
+            </div>
+
+            <p class="text-[11px] text-brand-brown/75 pt-1">
               Alternativamente, o pedido pode ser formulado pelo canal do Encarregado de Dados indicado abaixo, com prazo de atendimento em até 5 (cinco) dias úteis.
             </p>
           </div>
