@@ -69,6 +69,7 @@
   <!-- CONTAINER DO APP EM TELA CHEIA -->
   <main class="flex-1 w-full relative bg-white">
     <iframe 
+      id="appFrame"
       src="https://script.google.com/macros/s/AKfycbwEBMgyXwmDLzm779vj0XpumJ-K8Fqgw9E3RQ-GmKGrgvfV7zunO1VezN7YlyWB_t39Og/exec" 
       class="w-full h-full border-0 absolute inset-0"
       title="GeoGenealogiaBR App"
@@ -78,6 +79,17 @@
 
   <script>
     lucide.createIcons();
+
+    // Repassa os parâmetros da URL mãe (?action=delete_account, ?payment_status=approved, etc.) diretamente para o iframe
+    (function repassarParametrosParaIframe() {
+      if (window.location.search) {
+        const frame = document.getElementById('appFrame');
+        if (frame) {
+          const separador = frame.src.includes('?') ? '&' : '?';
+          frame.src = frame.src + separador + window.location.search.substring(1);
+        }
+      }
+    })();
   </script>
 </body>
 </html>
