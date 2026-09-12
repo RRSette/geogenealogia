@@ -33,7 +33,9 @@
               sand: '#ded4c3',        /* Areia pergaminho neutro */
               darkBrown: '#3a241a',   /* Variação escura para contraste */
               lightSand: '#ede7dc',   /* Variação clara de fundo para cards */
-              whitePure: '#ffffff'
+              whitePure: '#ffffff',
+              accentRed: '#991b1b',   /* Vermelho oficial do modal LGPD */
+              accentRedHover: '#7f1d1d'
             }
           },
           fontFamily: {
@@ -49,6 +51,32 @@
     body {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Botão idêntico ao modal de exclusão LGPD */
+    .btn-modal-lgpd-style {
+      background-color: #991b1b;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(82, 52, 38, 0.2);
+      transition: all 0.2s ease;
+      line-height: 1.2;
+    }
+
+    .btn-modal-lgpd-style:hover {
+      background-color: #7f1d1d;
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(82, 52, 38, 0.25);
+      color: #ffffff;
     }
   </style>
 </head>
@@ -82,7 +110,7 @@
           ← Início
         </a>
 
-        <!-- Botão Idêntico ao da Barra Superior -->
+        <!-- Botão Idêntico ao da Barra Superior do App -->
         <a href="/geogenealogiabr?action=delete_account" class="inline-flex items-center gap-1.5 bg-whitePure border border-[#523426]/25 hover:border-red-800 text-[#8f7467] hover:text-red-800 px-3 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm">
           <span>🗑️</span>
           <span>Excluir Meus Dados</span>
@@ -283,11 +311,11 @@
               <li>O armazenamento local do seu navegador é limpo, encerrando a sessão instantaneamente.</li>
             </ul>
 
-            <!-- Botão de Ação em Destaque dentro da Seção 6 -->
+            <!-- Botão de Ação Padronizado com o Modal -->
             <div class="pt-2">
-              <a href="/geogenealogiabr?action=delete_account" class="inline-flex items-center gap-2 bg-red-800 hover:bg-red-900 text-whitePure px-5 py-3 rounded-xl font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-[1.01]">
+              <a href="/geogenealogiabr?action=delete_account" class="btn-modal-lgpd-style">
                 <span>🗑️</span>
-                <span>Excluir Minha Conta e Dados Agora</span>
+                <span>Sim, Excluir Meus Dados</span>
               </a>
             </div>
 
