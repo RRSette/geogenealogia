@@ -103,6 +103,17 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+    /* Animação suave para os pontos do typing do chat */
+    @keyframes typingPulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .typing-dot {
+      animation: typingPulse 1.2s infinite ease-in-out;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
   </style>
 </head>
 
@@ -111,10 +122,10 @@
   <!-- ========================================== -->
   <!-- NAVBAR / CABEÇALHO PRINCIPAL -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-50 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#523426]/15 shadow-sm">
+  <header class="sticky top-0 z-40 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#523426]/15 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
       
-      <!-- Logotipo Institucional com blindagem contra esmagamento -->
+      <!-- Logotipo Institucional -->
       <a href="#" class="flex items-center gap-3 shrink-0 group">
         <div class="w-10 h-10 rounded-lg bg-[#523426] text-[#ded4c3] flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
           <i data-lucide="compass" class="w-5 h-5"></i>
@@ -129,7 +140,7 @@
         </div>
       </a>
 
-      <!-- Menu Desktop (1 Linha Garantida + Espaçamento Equilibrado) -->
+      <!-- Menu Desktop -->
       <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
         <a href="#ferramentas" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
           Ferramentas
@@ -573,7 +584,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO: TRIPWIRE / E-BOOKS E GUIAS PRÁTICOS (BLINDADA / TEASER) -->
+    <!-- SEÇÃO: TRIPWIRE / E-BOOKS E GUIAS PRÁTICOS -->
     <section id="ebook" class="py-20 bg-brand-lightSand/50 border-t border-brand-brown/15 relative">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -791,7 +802,6 @@
 
         <div class="space-y-4">
           
-          <!-- Item FAQ 1 -->
           <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
             <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
               <span class="text-sm sm:text-base">Por que não posso procurar a certidão diretamente no município atual?</span>
@@ -802,7 +812,6 @@
             </div>
           </div>
 
-          <!-- Item FAQ 2 -->
           <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
             <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
               <span class="text-sm sm:text-base">Como são entregues os e-books após a compra?</span>
@@ -813,7 +822,6 @@
             </div>
           </div>
 
-          <!-- Item FAQ 3 -->
           <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
             <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
               <span class="text-sm sm:text-base">O GeoGenealogia localiza a certidão física para mim?</span>
@@ -824,7 +832,6 @@
             </div>
           </div>
 
-          <!-- Item FAQ 4 -->
           <div class="border border-brand-brown/20 rounded-2xl bg-brand-lightSand/60 overflow-hidden">
             <button type="button" class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-semibold text-brand-brown hover:bg-brand-lightSand transition">
               <span class="text-sm sm:text-base">A plataforma atende eventos anteriores à Proclamação da República?</span>
@@ -843,6 +850,109 @@
   </main>
 
   <!-- ========================================== -->
+  <!-- WIDGET FLUTUANTE DE CONCIERGE / IA GUIA -->
+  <!-- ========================================== -->
+  <div id="concierge-widget-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    
+    <!-- Janela de Conversa (Retrátil) -->
+    <div id="chat-window" class="hidden w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-[#faf7f2] border border-[#523426]/25 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 transition-all duration-300 transform origin-bottom-right">
+      
+      <!-- Cabeçalho do Chat -->
+      <div class="bg-[#523426] text-[#ded4c3] px-5 py-4 flex items-center justify-between shadow">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-[#ded4c3] text-[#523426] flex items-center justify-center font-serif font-bold shadow-sm">
+            <i data-lucide="compass" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-sm tracking-wide text-[#ded4c3] leading-tight">Guia GeoGenealogia</h4>
+            <span class="text-[11px] text-[#ded4c3]/75 flex items-center gap-1.5 font-sans">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Atendimento Online
+            </span>
+          </div>
+        </div>
+        <button id="btn-close-chat" type="button" aria-label="Fechar Guia" class="p-1.5 rounded-lg hover:bg-[#ded4c3]/15 text-[#ded4c3] transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Área de Diálogo com Rolagem -->
+      <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm font-sans">
+        <!-- Boas-vindas Inicial -->
+        <div class="bg-[#ede7dc] text-[#523426] p-3.5 rounded-2xl rounded-tl-sm border border-[#523426]/10 max-w-[88%] leading-relaxed shadow-sm">
+          👋 Olá! Sou o <strong>Guia Virtual do GeoGenealogia</strong>. Estou aqui para explicar o que você pode encontrar em nossa plataforma e como podemos ajudar na localização dos seus registros de família.
+        </div>
+
+        <!-- Atalhos Rápidos (Quick Prompts) -->
+        <div id="quick-prompts-container" class="space-y-1.5 pt-1">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-[#523426]/70 block">
+            Dúvidas Frequentes:
+          </span>
+          <div class="flex flex-col gap-1.5">
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que é o GeoGenealogia e como ele me ajuda?">
+              🧭 O que é o GeoGenealogia?
+            </button>
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Como funciona a ferramenta de busca de jurisdições?">
+              🔍 Como funciona a ferramenta de busca?
+            </button>
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Quais são os e-books e guias disponíveis no site?">
+              📚 Quais são os e-books disponíveis?
+            </button>
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que vou encontrar na futura loja do site?">
+              🛒 O que vou encontrar na loja?
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback de Digitação (Typing Indicator) -->
+      <div id="chat-typing" class="hidden px-5 py-2 bg-[#faf7f2] border-t border-[#523426]/10 text-xs text-[#523426]/70 flex items-center gap-2">
+        <span>Guia digitando</span>
+        <div class="flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
+        </div>
+      </div>
+
+      <!-- Caixa de Envio de Mensagem -->
+      <form id="chat-form" class="p-3 bg-white border-t border-[#523426]/15 flex items-center gap-2">
+        <input 
+          type="text" 
+          id="chat-input" 
+          placeholder="Pergunte sobre nosso site..." 
+          required 
+          autocomplete="off"
+          class="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-[#faf7f2] text-[#523426] placeholder-[#523426]/50 border border-[#523426]/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#523426]"
+        />
+        <button 
+          type="submit" 
+          id="chat-submit-btn" 
+          class="p-2.5 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] rounded-xl transition shadow flex items-center justify-center shrink-0"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Botão Flutuante (FAB) -->
+    <button 
+      id="btn-toggle-concierge" 
+      type="button" 
+      aria-label="Abrir Guia do Site" 
+      class="group flex items-center gap-2.5 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-4 py-3.5 rounded-full shadow-xl transition-all duration-300 hover:scale-105"
+    >
+      <div class="relative">
+        <i data-lucide="message-square" class="w-5 h-5"></i>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#523426]"></span>
+      </div>
+      <span class="text-xs font-semibold tracking-wide pr-1">Ajuda & Informações</span>
+    </button>
+
+  </div>
+
+  <!-- ========================================== -->
   <!-- RODAPÉ INSTITUCIONAL -->
   <!-- ========================================== -->
   <footer class="bg-brand-brown text-brand-sand border-t border-brand-brown/30 mt-auto">
@@ -850,7 +960,6 @@
       
       <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
         
-        <!-- Coluna Institucional -->
         <div class="md:col-span-5 space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg bg-brand-sand text-brand-brown flex items-center justify-center shadow">
@@ -868,7 +977,6 @@
           </div>
         </div>
 
-        <!-- Links Rápidos -->
         <div class="md:col-span-3 space-y-3 text-xs sm:text-sm">
           <h4 class="font-serif font-bold text-brand-sand text-sm uppercase tracking-wider mb-2">
             Navegação
@@ -882,7 +990,6 @@
           </ul>
         </div>
 
-        <!-- Segurança e Transparência -->
         <div class="md:col-span-4 space-y-3 text-xs sm:text-sm">
           <h4 class="font-serif font-bold text-brand-sand text-sm uppercase tracking-wider mb-2">
             Pagamento Seguro
@@ -898,7 +1005,6 @@
 
       </div>
 
-      <!-- Barra Inferior de Direitos e Termos -->
       <div class="mt-12 pt-8 border-t border-brand-sand/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-sand/60">
         <div>
           Desenvolvido com rigor histórico e metodológico.
@@ -912,7 +1018,7 @@
     </div>
   </footer>
 
-  <!-- Scripts: Ícones Lucide, Menus e Envio de Leads -->
+  <!-- Scripts: Ícones Lucide, Menus, Formulário e Assistente IA -->
   <script>
     // Inicializa os ícones Lucide
     lucide.createIcons();
@@ -941,11 +1047,9 @@
         const icon = button.querySelector('i');
         const isCurrentlyHidden = content.classList.contains('hidden');
 
-        // Fecha todos os outros itens abertos
         document.querySelectorAll('.faq-content').forEach(el => el.classList.add('hidden'));
         document.querySelectorAll('.faq-toggle i').forEach(el => el.classList.remove('rotate-180'));
 
-        // Alterna o item clicado
         if (isCurrentlyHidden) {
           content.classList.remove('hidden');
           icon.classList.add('rotate-180');
@@ -953,16 +1057,16 @@
       });
     });
 
-    // Integração com Google Apps Script (Planilha "GeoGenealogia - Leads e Vendas")
+    // Endpoint oficial do backend para Leads e Concierge IA (Código.gs)
     const SCRIPT_URL_LEADS = 'https://script.google.com/macros/s/AKfycbwjdxdjy-Om1xsB37ijhOtyzGO_xyl-2n04JYMi0f-PNzXooDW-agqNwUPzGYiDQXGw/exec';
 
+    // Formulário de Leads
     const form = document.getElementById('form-lead');
     const submitBtn = document.getElementById('btn-submit');
     const feedback = document.getElementById('form-feedback');
     const inputNome = document.getElementById('nome');
     const inputEmail = document.getElementById('email');
 
-    // Função para resetar e ocultar totalmente o feedback
     function resetFeedback() {
       if (feedback) {
         feedback.textContent = '';
@@ -970,22 +1074,18 @@
       }
     }
 
-    // Limpa o aviso na hora em que o usuário volta a digitar
     if (inputNome) inputNome.addEventListener('input', resetFeedback);
     if (inputEmail) inputEmail.addEventListener('input', resetFeedback);
 
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        // Limpa aviso anterior imediatamente
         resetFeedback();
 
         const originalBtnHTML = submitBtn.innerHTML;
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Verificando e salvando...</span>';
 
-        // Envio blindado via URLSearchParams para evitar problemas de CORS no Apps Script
         const formParams = new URLSearchParams();
         formParams.append('nome', inputNome.value.trim());
         formParams.append('email', inputEmail.value.trim().toLowerCase());
@@ -1001,7 +1101,6 @@
           });
 
           const result = await response.json();
-
           feedback.textContent = result.message;
           feedback.classList.remove('hidden');
 
@@ -1025,6 +1124,109 @@
         }
       });
     }
+
+    // ============================================================
+    // MOTOR DO CONCIERGE / ASSISTENTE DE NAVEGAÇÃO IA
+    // ============================================================
+    const btnToggleConcierge = document.getElementById('btn-toggle-concierge');
+    const btnCloseChat = document.getElementById('btn-close-chat');
+    const chatWindow = document.getElementById('chat-window');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatTyping = document.getElementById('chat-typing');
+    const chatSubmitBtn = document.getElementById('chat-submit-btn');
+    const quickButtons = document.querySelectorAll('.quick-btn');
+
+    // Alternar visibilidade da janela
+    function toggleChat() {
+      const isHidden = chatWindow.classList.contains('hidden');
+      if (isHidden) {
+        chatWindow.classList.remove('hidden');
+        chatInput.focus();
+      } else {
+        chatWindow.classList.add('hidden');
+      }
+    }
+
+    btnToggleConcierge.addEventListener('click', toggleChat);
+    btnCloseChat.addEventListener('click', toggleChat);
+
+    // Formata mensagem simples de retorno com quebras e links
+    function appendMessage(text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = isUser
+        ? 'bg-[#523426] text-[#ded4c3] p-3.5 rounded-2xl rounded-tr-sm self-end max-w-[85%] ml-auto leading-relaxed shadow-sm'
+        : 'bg-[#ede7dc] text-[#523426] p-3.5 rounded-2xl rounded-tl-sm border border-[#523426]/10 max-w-[88%] leading-relaxed shadow-sm';
+      
+      const formattedText = text
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      msgDiv.innerHTML = formattedText;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Envio para o Apps Script
+    async function enviarPerguntaConcierge(pergunta) {
+      if (!pergunta) return;
+
+      appendMessage(pergunta, true);
+      chatInput.value = '';
+      chatInput.disabled = true;
+      chatSubmitBtn.disabled = true;
+      chatTyping.classList.remove('hidden');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      const params = new URLSearchParams();
+      params.append('action', 'chat_guia');
+      params.append('mensagem', pergunta);
+
+      try {
+        const response = await fetch(SCRIPT_URL_LEADS, {
+          method: 'POST',
+          body: params,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+
+        const data = await response.json();
+        chatTyping.classList.add('hidden');
+
+        if (data.status === 'success') {
+          appendMessage(data.resposta, false);
+        } else {
+          appendMessage('Desculpe, tive uma dificuldade momentânea. Você pode navegar pelos tópicos da página inicial ou tentar novamente.', false);
+        }
+      } catch (err) {
+        chatTyping.classList.add('hidden');
+        appendMessage('Houve uma falha na conexão com o servidor. Por favor, tente novamente em instantes.', false);
+      } finally {
+        chatInput.disabled = false;
+        chatSubmitBtn.disabled = false;
+        chatInput.focus();
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    }
+
+    // Submissão do Formulário do Chat
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (text) {
+        enviarPerguntaConcierge(text);
+      }
+    });
+
+    // Clique nos Atalhos Rápidos
+    quickButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prompt = btn.getAttribute('data-prompt');
+        enviarPerguntaConcierge(prompt);
+      });
+    });
   </script>
 </body>
 </html>
