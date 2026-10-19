@@ -166,10 +166,9 @@
         <a href="#faq" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
           Dúvidas
         </a>
-        <!-- Botão de Novidades Desktop -->
-        <button type="button" onclick="abrirModalChangelogLanding()" class="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#523426]/25 bg-white/70 hover:bg-white text-[#523426] text-xs font-semibold shadow-2xs transition">
-          <i data-lucide="bell" class="w-3.5 h-3.5"></i>
-          <span>Novidades</span>
+        <!-- Botão Ícone de Sino Desktop (Sem texto, idêntico à ferramenta) -->
+        <button type="button" onclick="abrirModalChangelogLanding()" class="relative p-2 rounded-lg border border-[#523426]/20 bg-white/70 hover:bg-white text-[#523426] shadow-2xs transition" title="Visualizar atualizações e novas ferramentas">
+          <i data-lucide="bell" class="w-4 h-4"></i>
           <span id="landingBadgeDot" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-white badge-unread-dot"></span>
         </button>
       </nav>
@@ -184,9 +183,9 @@
 
       <!-- Botão Menu Mobile -->
       <div class="lg:hidden flex items-center gap-2">
-        <button type="button" onclick="abrirModalChangelogLanding()" class="relative p-2 rounded-lg text-[#523426] hover:bg-[#523426]/10 transition" aria-label="Novidades">
+        <button type="button" onclick="abrirModalChangelogLanding()" class="relative p-2 rounded-lg border border-[#523426]/20 bg-white/70 text-[#523426] hover:bg-[#523426]/10 transition" aria-label="Novidades">
           <i data-lucide="bell" class="w-5 h-5"></i>
-          <span id="landingBadgeDotMobile" class="hidden absolute top-1 right-1 w-2 h-2 bg-amber-500 rounded-full badge-unread-dot"></span>
+          <span id="landingBadgeDotMobile" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-white badge-unread-dot"></span>
         </button>
         <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-[#523426] hover:bg-[#523426]/10 transition">
           <i data-lucide="menu" class="w-6 h-6"></i>
@@ -1076,11 +1075,13 @@
 
   <!-- Scripts: Ícones Lucide, Menus, Formulário, Assistente IA e Changelog -->
   <script>
-    // Inicializa os ícones Lucide
     lucide.createIcons();
 
-    // Endpoint oficial do backend para Leads, Concierge e Changelog
+    // Endpoint de Leads e Concierge
     const SCRIPT_URL_LEADS = 'https://script.google.com/macros/s/AKfycbwjdxdjy-Om1xsB37ijhOtyzGO_xyl-2n04JYMi0f-PNzXooDW-agqNwUPzGYiDQXGw/exec';
+    
+    // Endpoint oficial do App onde reside a base de dados do Supabase (Login_Backend.gs)
+    const SCRIPT_URL_APP_API = 'https://script.google.com/macros/s/AKfycbwEBMgyXwmDLzm779vj0XpumJ-K8Fqgw9E3RQ-GmKGrgvfV7zunO1VezN7YlyWB_t39Og/exec';
 
     // Controle de Exibição em Modo de Teste Privado (?debug_chat=1)
     const urlParams = new URLSearchParams(window.location.search);
@@ -1206,7 +1207,7 @@
 
     async function carregarChangelogLanding() {
       try {
-        const response = await fetch(`${SCRIPT_URL_LEADS}?action=obter_changelog`);
+        const response = await fetch(`${SCRIPT_URL_APP_API}?action=obter_changelog`);
         const res = await response.json();
         if (res && res.status === 'success' && res.itens) {
           listaChangelogLanding = res.itens;
@@ -1241,7 +1242,6 @@
       if (modal) modal.classList.remove('hidden');
       renderizarChangelogLanding();
 
-      // Marca como lido no localStorage
       if (listaChangelogLanding && listaChangelogLanding.length > 0) {
         const itemMaisRecente = listaChangelogLanding[0];
         if (itemMaisRecente.publicadoEmIso) {
@@ -1311,14 +1311,11 @@
       container.innerHTML = html;
     }
 
-    // Inicializa a escuta de changelog no carregamento
     window.addEventListener('DOMContentLoaded', () => {
       carregarChangelogLanding();
     });
 
-    // ============================================================
-    // MOTOR DO CONCIERGE / ASSISTENTE DE NAVEGAÇÃO IA
-    // ============================================================
+    // Concierge IA
     const btnToggleConcierge = document.getElementById('btn-toggle-concierge');
     const btnCloseChat = document.getElementById('btn-close-chat');
     const chatWindow = document.getElementById('chat-window');
@@ -1414,9 +1411,7 @@
       });
     });
 
-    // ============================================================
-    // ROTINA DE TELEMETRIA E ACESSO SEGURO
-    // ============================================================
+    // Telemetria e Acesso Seguro (3 Cliques no Cadeado ou Ctrl+Shift+A)
     (function() {
       var _tSec = 0;
       var _lastSec = 0;
@@ -1437,7 +1432,6 @@
           }
           _lastSec = _now;
 
-          // Exige 3 cliques rápidos no ícone do cadeado (Desktop, Tablet ou Mobile)
           if (_tSec === 3) {
             _tSec = 0;
             _telemetrySecPing();
@@ -1445,7 +1439,6 @@
         });
       }
 
-      // Atalho de Teclado Físico (Ctrl + Shift + A)
       window.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
           e.preventDefault();
