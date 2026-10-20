@@ -114,15 +114,6 @@
     }
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-    /* Pulso da bolinha de novidades não lidas */
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
-    .badge-unread-dot {
-      animation: pulseDot 2s infinite ease-in-out;
-    }
   </style>
 </head>
 
@@ -166,11 +157,6 @@
         <a href="#faq" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
           Dúvidas
         </a>
-        <!-- Botão Ícone de Sino Desktop (Sem texto, idêntico à ferramenta) -->
-        <button type="button" onclick="abrirModalChangelogLanding()" class="relative p-2 rounded-lg border border-[#523426]/20 bg-white/70 hover:bg-white text-[#523426] shadow-2xs transition" title="Visualizar atualizações e novas ferramentas">
-          <i data-lucide="bell" class="w-4 h-4"></i>
-          <span id="landingBadgeDot" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-white badge-unread-dot"></span>
-        </button>
       </nav>
 
       <!-- Botão de Ação Direta (CTA Navbar) -->
@@ -182,11 +168,7 @@
       </div>
 
       <!-- Botão Menu Mobile -->
-      <div class="lg:hidden flex items-center gap-2">
-        <button type="button" onclick="abrirModalChangelogLanding()" class="relative p-2 rounded-lg border border-[#523426]/20 bg-white/70 text-[#523426] hover:bg-[#523426]/10 transition" aria-label="Novidades">
-          <i data-lucide="bell" class="w-5 h-5"></i>
-          <span id="landingBadgeDotMobile" class="hidden absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-full border-2 border-white badge-unread-dot"></span>
-        </button>
+      <div class="lg:hidden flex items-center">
         <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-[#523426] hover:bg-[#523426]/10 transition">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
@@ -868,41 +850,6 @@
   </main>
 
   <!-- ========================================== -->
-  <!-- MODAL: CHANGELOG / NOVIDADES DA PLATAFORMA -->
-  <!-- ========================================== -->
-  <div id="modal-landing-changelog" class="hidden fixed inset-0 z-50 bg-[#3a241a]/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-[#faf7f2] border border-[#523426]/25 border-t-4 border-t-[#523426] rounded-2xl max-w-xl w-full max-h-[88vh] flex flex-col shadow-2xl overflow-hidden animate-fadeIn">
-      
-      <!-- Cabeçalho do Modal -->
-      <div class="p-5 border-b border-[#523426]/15 flex items-center justify-between bg-[#faf7f2]">
-        <div class="flex items-center gap-2.5">
-          <span class="text-xl">📢</span>
-          <div>
-            <h3 class="font-serif font-bold text-base text-[#523426]">Novidades e Atualizações</h3>
-            <span class="text-xs text-[#786458]">Histórico de evolução e melhorias da plataforma</span>
-          </div>
-        </div>
-        <button type="button" onclick="fecharModalChangelogLanding()" class="p-1 rounded-lg text-[#786458] hover:text-[#523426] transition text-xl leading-none">
-          &times;
-        </button>
-      </div>
-
-      <!-- Corpo da Linha do Tempo -->
-      <div id="landing-changelog-list" class="p-5 overflow-y-auto space-y-3.5 text-xs sm:text-sm">
-        <div class="text-center py-8 text-[#786458]">Carregando comunicados recentes...</div>
-      </div>
-
-      <!-- Rodapé do Modal -->
-      <div class="p-3.5 bg-[#f0eae1] border-t border-[#523426]/15 flex justify-end">
-        <button type="button" onclick="fecharModalChangelogLanding()" class="px-5 py-2 rounded-xl bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] text-xs font-semibold transition">
-          Entendi
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ========================================== -->
   <!-- WIDGET FLUTUANTE DE CONCIERGE / IA GUIA -->
   <!-- ========================================== -->
   <div id="concierge-widget-container" class="hidden fixed bottom-6 right-6 z-50 flex flex-col items-end">
@@ -1073,15 +1020,12 @@
     </div>
   </footer>
 
-  <!-- Scripts: Ícones Lucide, Menus, Formulário, Assistente IA e Changelog -->
+  <!-- Scripts: Ícones Lucide, Menus, Formulário, Assistente IA -->
   <script>
     lucide.createIcons();
 
     // Endpoint de Leads e Concierge
     const SCRIPT_URL_LEADS = 'https://script.google.com/macros/s/AKfycbwjdxdjy-Om1xsB37ijhOtyzGO_xyl-2n04JYMi0f-PNzXooDW-agqNwUPzGYiDQXGw/exec';
-    
-    // Endpoint oficial do App onde reside a base de dados do Supabase (Login_Backend.gs)
-    const SCRIPT_URL_APP_API = 'https://script.google.com/macros/s/AKfycbwEBMgyXwmDLzm779vj0XpumJ-K8Fqgw9E3RQ-GmKGrgvfV7zunO1VezN7YlyWB_t39Og/exec';
 
     // Controle de Exibição em Modo de Teste Privado (?debug_chat=1)
     const urlParams = new URLSearchParams(window.location.search);
@@ -1190,130 +1134,6 @@
         }
       });
     }
-
-    // ============================================================
-    // MOTOR DE CHANGELOG / NOVIDADES NA LANDING PAGE
-    // ============================================================
-    let listaChangelogLanding = [];
-
-    function obterEstiloCategoriaLanding(cat) {
-      if (cat === 'Novidades') return { bg: 'bg-blue-900/10 text-blue-900', icone: '🚀' };
-      if (cat === 'Melhoria') return { bg: 'bg-purple-900/10 text-purple-900', icone: '✨' };
-      if (cat === 'Correções de Bugs') return { bg: 'bg-amber-900/10 text-amber-900', icone: '🐛' };
-      if (cat === 'Segurança') return { bg: 'bg-emerald-900/10 text-emerald-900', icone: '🔒' };
-      if (cat === 'Descontinuação') return { bg: 'bg-red-900/10 text-red-900', icone: '⚠️' };
-      return { bg: 'bg-stone-900/10 text-stone-900', icone: '📌' };
-    }
-
-    async function carregarChangelogLanding() {
-      try {
-        const response = await fetch(`${SCRIPT_URL_APP_API}?action=obter_changelog`);
-        const res = await response.json();
-        if (res && res.status === 'success' && res.itens) {
-          listaChangelogLanding = res.itens;
-          verificarBadgeChangelogLanding();
-        }
-      } catch (err) {
-        console.warn('Changelog indisponível temporariamente.');
-      }
-    }
-
-    function verificarBadgeChangelogLanding() {
-      if (!listaChangelogLanding || listaChangelogLanding.length === 0) return;
-
-      const ultimaVista = localStorage.getItem('geogenealogia_last_seen_changelog');
-      const itemMaisRecente = listaChangelogLanding[0];
-      const dataItemMaisRecente = itemMaisRecente.publicadoEmIso;
-
-      const badgeDesk = document.getElementById('landingBadgeDot');
-      const badgeMob = document.getElementById('landingBadgeDotMobile');
-
-      if (!ultimaVista || (dataItemMaisRecente && new Date(dataItemMaisRecente) > new Date(ultimaVista))) {
-        if (badgeDesk) badgeDesk.classList.remove('hidden');
-        if (badgeMob) badgeMob.classList.remove('hidden');
-      } else {
-        if (badgeDesk) badgeDesk.classList.add('hidden');
-        if (badgeMob) badgeMob.classList.add('hidden');
-      }
-    }
-
-    function abrirModalChangelogLanding() {
-      const modal = document.getElementById('modal-landing-changelog');
-      if (modal) modal.classList.remove('hidden');
-      renderizarChangelogLanding();
-
-      if (listaChangelogLanding && listaChangelogLanding.length > 0) {
-        const itemMaisRecente = listaChangelogLanding[0];
-        if (itemMaisRecente.publicadoEmIso) {
-          localStorage.setItem('geogenealogia_last_seen_changelog', itemMaisRecente.publicadoEmIso);
-        }
-        const badgeDesk = document.getElementById('landingBadgeDot');
-        const badgeMob = document.getElementById('landingBadgeDotMobile');
-        if (badgeDesk) badgeDesk.classList.add('hidden');
-        if (badgeMob) badgeMob.classList.add('hidden');
-      }
-    }
-
-    function fecharModalChangelogLanding() {
-      const modal = document.getElementById('modal-landing-changelog');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function renderizarChangelogLanding() {
-      const container = document.getElementById('landing-changelog-list');
-      if (!container) return;
-
-      if (!listaChangelogLanding || listaChangelogLanding.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-8 text-[#786458]">
-            Nenhuma novidade recente publicada no momento. Estamos sempre aprimorando as ferramentas!
-          </div>
-        `;
-        return;
-      }
-
-      let html = '';
-      listaChangelogLanding.forEach(item => {
-        const catInfo = obterEstiloCategoriaLanding(item.categoria);
-        const versaoBadge = item.versao 
-          ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#ede7dc] text-[#523426]">${item.versao}</span>` 
-          : '';
-        const descHtml = item.descricao.replace(/\n/g, '<br>');
-
-        html += `
-          <div class="bg-white border border-[#523426]/15 border-l-4 border-l-[#523426] rounded-xl p-4 shadow-2xs space-y-2">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-2">
-                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${catInfo.bg}">
-                  <span>${catInfo.icone}</span>
-                  <span>${item.categoria}</span>
-                </span>
-                ${versaoBadge}
-              </div>
-              <span class="text-[11px] text-[#786458] font-medium">${item.dataPublicacao || ''}</span>
-            </div>
-
-            <h4 class="font-serif font-bold text-sm text-[#523426] leading-snug">
-              ${item.titulo}
-            </h4>
-
-            <div class="text-xs text-[#4a3830] leading-relaxed">
-              ${descHtml}
-            </div>
-
-            <div class="pt-2 border-t border-[#523426]/10 text-[10px] text-[#786458] text-right">
-              Por: ${item.autor}
-            </div>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      carregarChangelogLanding();
-    });
 
     // Concierge IA
     const btnToggleConcierge = document.getElementById('btn-toggle-concierge');
