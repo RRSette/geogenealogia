@@ -75,18 +75,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Configuração das cores oficiais no Tailwind -->
+  <!-- Configuração da nova paleta oficial Umber no Tailwind -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             brand: {
-              brown: '#523426',       // Café profundo institucional
-              sand: '#ded4c3',        // Areia/Pergaminho neutro institucional
-              darkBrown: '#3a241a',   // Variação escura para hover/contrastes
-              lightSand: '#ede7dc',   // Variação clara de fundo para cards
-              whitePure: '#ffffff'
+              brown: '#3D3532',       // Umber Profundo Institucional
+              sand: '#ded4c3',        // Sand neutro pergaminho base
+              darkBrown: '#2B2523',   // Umber Dark para hover e foco
+              lightSand: '#ede7dc',   // Plaster para cartões e blocos
+              whitePure: '#faf7f2',   // Latte para superfícies limpas
+              mocha: '#6B5145',       // Mocha para bordas e acentos intermediários
+              saddle: '#826658'       // Saddle para textos muted
             }
           },
           fontFamily: {
@@ -122,19 +124,19 @@
   <!-- ========================================== -->
   <!-- NAVBAR / CABEÇALHO PRINCIPAL -->
   <!-- ========================================== -->
-  <header class="sticky top-0 z-40 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#523426]/15 shadow-sm">
+  <header class="sticky top-0 z-40 bg-[#ded4c3]/95 backdrop-blur-md border-b border-[#3D3532]/15 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
       
       <!-- Logotipo Institucional -->
       <a href="#" class="flex items-center gap-3 shrink-0 group">
-        <div class="w-10 h-10 rounded-lg bg-[#523426] text-[#ded4c3] flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
+        <div class="w-10 h-10 rounded-lg bg-[#3D3532] text-[#ded4c3] flex items-center justify-center shadow-md transition-transform group-hover:scale-105">
           <i data-lucide="compass" class="w-5 h-5"></i>
         </div>
         <div class="flex flex-col">
-          <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-[#523426] leading-tight">
+          <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-[#3D3532] leading-tight">
             GeoGenealogia
           </span>
-          <span class="text-[10px] uppercase tracking-widest text-[#523426]/70 font-semibold">
+          <span class="text-[10px] uppercase tracking-widest text-[#3D3532]/70 font-semibold">
             Inteligência Territorial
           </span>
         </div>
@@ -142,26 +144,26 @@
 
       <!-- Menu Desktop -->
       <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium">
-        <a href="#ferramentas" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+        <a href="#ferramentas" class="text-[#3D3532]/85 hover:text-[#3D3532] whitespace-nowrap transition-colors">
           Ferramentas
         </a>
-        <a href="#como-funciona" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+        <a href="#como-funciona" class="text-[#3D3532]/85 hover:text-[#3D3532] whitespace-nowrap transition-colors">
           Como Funciona
         </a>
-        <a href="#contato" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+        <a href="#contato" class="text-[#3D3532]/85 hover:text-[#3D3532] whitespace-nowrap transition-colors">
           Cadastre-se
         </a>
-        <a href="#ebook" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+        <a href="#ebook" class="text-[#3D3532]/85 hover:text-[#3D3532] whitespace-nowrap transition-colors">
           E-books
         </a>
-        <a href="#faq" class="text-[#523426]/85 hover:text-[#523426] whitespace-nowrap transition-colors">
+        <a href="#faq" class="text-[#3D3532]/85 hover:text-[#3D3532] whitespace-nowrap transition-colors">
           Dúvidas
         </a>
       </nav>
 
       <!-- Botão de Ação Direta (CTA Navbar) -->
       <div class="hidden sm:flex items-center shrink-0">
-        <a href="#contato" class="inline-flex items-center gap-2 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow whitespace-nowrap">
+        <a href="#contato" class="inline-flex items-center gap-2 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow whitespace-nowrap">
           <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -169,7 +171,7 @@
 
       <!-- Botão Menu Mobile -->
       <div class="lg:hidden flex items-center">
-        <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-[#523426] hover:bg-[#523426]/10 transition">
+        <button id="btn-mobile-menu" type="button" aria-label="Abrir menu" class="p-2 rounded-lg text-[#3D3532] hover:bg-[#3D3532]/10 transition">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -177,24 +179,24 @@
     </div>
 
     <!-- Menu Dropdown Mobile -->
-    <div id="mobile-menu" class="hidden lg:hidden border-b border-[#523426]/15 bg-[#ede7dc] px-4 pt-3 pb-5 space-y-3">
-      <a href="#ferramentas" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+    <div id="mobile-menu" class="hidden lg:hidden border-b border-[#3D3532]/15 bg-[#ede7dc] px-4 pt-3 pb-5 space-y-3">
+      <a href="#ferramentas" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#3D3532] hover:bg-[#ded4c3]">
         Ferramentas
       </a>
-      <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+      <a href="#como-funciona" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#3D3532] hover:bg-[#ded4c3]">
         Como Funciona
       </a>
-      <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+      <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#3D3532] hover:bg-[#ded4c3]">
         Cadastre-se
       </a>
-      <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+      <a href="#ebook" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#3D3532] hover:bg-[#ded4c3]">
         E-books
       </a>
-      <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#523426] hover:bg-[#ded4c3]">
+      <a href="#faq" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-[#3D3532] hover:bg-[#ded4c3]">
         Dúvidas Frequentes
       </a>
       <div class="pt-2">
-        <a href="#contato" class="mobile-link flex items-center justify-center gap-2 w-full bg-[#523426] text-[#ded4c3] px-4 py-2.5 rounded-lg text-sm font-semibold">
+        <a href="#contato" class="mobile-link flex items-center justify-center gap-2 w-full bg-[#3D3532] text-[#ded4c3] px-4 py-2.5 rounded-lg text-sm font-semibold">
           <span>Receber Novidades</span>
           <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
@@ -209,7 +211,7 @@
 
     <!-- HERO SECTION -->
     <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
-      <div class="absolute inset-0 opacity-25 pointer-events-none bg-[radial-gradient(#523426_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      <div class="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#3D3532_1px,transparent_1px)] [background-size:24px_24px]"></div>
 
       <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -229,12 +231,12 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              <a href="/geogenealogiabr" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5">
+              <a href="/geogenealogiabr" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all hover:shadow-lg hover:-translate-y-0.5">
                 <i data-lucide="search" class="w-4 h-4"></i>
                 <span>Consultar Jurisdição Agora</span>
               </a>
 
-              <a href="#como-funciona" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm border border-[#523426]/30 text-[#523426] hover:bg-[#523426]/10 transition-colors">
+              <a href="#como-funciona" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm border border-[#3D3532]/30 text-[#3D3532] hover:bg-[#3D3532]/10 transition-colors">
                 <span>Entenda o Desmembramento</span>
                 <i data-lucide="help-circle" class="w-4 h-4"></i>
               </a>
@@ -455,7 +457,7 @@
             </div>
 
             <div class="pt-8 mt-6 border-t border-brand-brown/15">
-              <a href="/geogenealogiabr" class="w-full inline-flex items-center justify-center gap-2 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all group-hover:shadow-lg">
+              <a href="/geogenealogiabr" class="w-full inline-flex items-center justify-center gap-2 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] px-6 py-3.5 rounded-xl font-semibold text-sm shadow-md transition-all group-hover:shadow-lg">
                 <span>Iniciar Consulta no GeoGenealogiaBR</span>
                 <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
               </a>
@@ -649,7 +651,7 @@
               </div>
 
               <!-- BOTÃO LISTA DE ESPERA -->
-              <a href="#contato" class="w-full inline-flex items-center justify-center gap-2 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-5 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-[1.02]">
+              <a href="#contato" class="w-full inline-flex items-center justify-center gap-2 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] px-5 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-[1.02]">
                 <i data-lucide="bell" class="w-4 h-4"></i>
                 <span>Avisar no Lançamento</span>
               </a>
@@ -855,12 +857,12 @@
   <div id="concierge-widget-container" class="hidden fixed bottom-6 right-6 z-50 flex flex-col items-end">
     
     <!-- Janela de Conversa (Retrátil) -->
-    <div id="chat-window" class="hidden w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-[#faf7f2] border border-[#523426]/25 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 transition-all duration-300 transform origin-bottom-right">
+    <div id="chat-window" class="hidden w-[92vw] sm:w-[380px] h-[520px] max-h-[85vh] bg-[#faf7f2] border border-[#3D3532]/25 rounded-3xl shadow-2xl flex flex-col overflow-hidden mb-4 transition-all duration-300 transform origin-bottom-right">
       
       <!-- Cabeçalho do Chat -->
-      <div class="bg-[#523426] text-[#ded4c3] px-5 py-4 flex items-center justify-between shadow">
+      <div class="bg-[#3D3532] text-[#ded4c3] px-5 py-4 flex items-center justify-between shadow">
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-[#ded4c3] text-[#523426] flex items-center justify-center font-serif font-bold shadow-sm">
+          <div class="w-9 h-9 rounded-full bg-[#ded4c3] text-[#3D3532] flex items-center justify-center font-serif font-bold shadow-sm">
             <i data-lucide="compass" class="w-5 h-5"></i>
           </div>
           <div>
@@ -879,26 +881,26 @@
       <!-- Área de Diálogo com Rolagem -->
       <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3.5 text-xs sm:text-sm font-sans">
         <!-- Boas-vindas Inicial -->
-        <div class="bg-[#ede7dc] text-[#523426] p-3.5 rounded-2xl rounded-tl-sm border border-[#523426]/10 max-w-[88%] leading-relaxed shadow-sm">
+        <div class="bg-[#ede7dc] text-[#3D3532] p-3.5 rounded-2xl rounded-tl-sm border border-[#3D3532]/10 max-w-[88%] leading-relaxed shadow-sm">
           👋 Olá! Sou o <strong>Guia Virtual do GeoGenealogia</strong>. Estou aqui para explicar o que você pode encontrar em nossa plataforma e como podemos ajudar na localização dos seus registros de família.
         </div>
 
         <!-- Atalhos Rápidos (Quick Prompts) -->
         <div id="quick-prompts-container" class="space-y-1.5 pt-1">
-          <span class="text-[11px] font-semibold uppercase tracking-wider text-[#523426]/70 block">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-[#3D3532]/70 block">
             Dúvidas Frequentes:
           </span>
           <div class="flex flex-col gap-1.5">
-            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que é o GeoGenealogia e como ele me ajuda?">
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#3D3532] hover:bg-[#ede7dc] border border-[#3D3532]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que é o GeoGenealogia e como ele me ajuda?">
               🧭 O que é o GeoGenealogia?
             </button>
-            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Como funciona a ferramenta de busca de jurisdições?">
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#3D3532] hover:bg-[#ede7dc] border border-[#3D3532]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Como funciona a ferramenta de busca de jurisdições?">
               🔍 Como funciona a ferramenta de busca?
             </button>
-            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Quais são os e-books e guias disponíveis no site?">
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#3D3532] hover:bg-[#ede7dc] border border-[#3D3532]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="Quais são os e-books e guias disponíveis no site?">
               📚 Quais são os e-books disponíveis?
             </button>
-            <button type="button" class="quick-btn text-left text-xs bg-white text-[#523426] hover:bg-[#ede7dc] border border-[#523426]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que vou encontrar na futura loja do site?">
+            <button type="button" class="quick-btn text-left text-xs bg-white text-[#3D3532] hover:bg-[#ede7dc] border border-[#3D3532]/20 p-2.5 rounded-xl transition shadow-2xs" data-prompt="O que vou encontrar na futura loja do site?">
               🛒 O que vou encontrar na loja?
             </button>
           </div>
@@ -906,29 +908,29 @@
       </div>
 
       <!-- Feedback de Digitação (Typing Indicator) -->
-      <div id="chat-typing" class="hidden px-5 py-2 bg-[#faf7f2] border-t border-[#523426]/10 text-xs text-[#523426]/70 flex items-center gap-2">
+      <div id="chat-typing" class="hidden px-5 py-2 bg-[#faf7f2] border-t border-[#3D3532]/10 text-xs text-[#3D3532]/70 flex items-center gap-2">
         <span>Guia digitando</span>
         <div class="flex items-center gap-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
-          <span class="w-1.5 h-1.5 rounded-full bg-[#523426] typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#3D3532] typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#3D3532] typing-dot"></span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#3D3532] typing-dot"></span>
         </div>
       </div>
 
       <!-- Caixa de Envio de Mensagem -->
-      <form id="chat-form" class="p-3 bg-white border-t border-[#523426]/15 flex items-center gap-2">
+      <form id="chat-form" class="p-3 bg-white border-t border-[#3D3532]/15 flex items-center gap-2">
         <input 
           type="text" 
           id="chat-input" 
           placeholder="Pergunte sobre nosso site..." 
           required 
           autocomplete="off"
-          class="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-[#faf7f2] text-[#523426] placeholder-[#523426]/50 border border-[#523426]/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#523426]"
+          class="flex-1 px-3.5 py-2.5 text-xs sm:text-sm bg-[#faf7f2] text-[#3D3532] placeholder-[#3D3532]/50 border border-[#3D3532]/25 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#3D3532]"
         />
         <button 
           type="submit" 
           id="chat-submit-btn" 
-          class="p-2.5 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] rounded-xl transition shadow flex items-center justify-center shrink-0"
+          class="p-2.5 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] rounded-xl transition shadow flex items-center justify-center shrink-0"
         >
           <i data-lucide="send" class="w-4 h-4"></i>
         </button>
@@ -941,11 +943,11 @@
       id="btn-toggle-concierge" 
       type="button" 
       aria-label="Abrir Guia do Site" 
-      class="group flex items-center gap-2.5 bg-[#523426] text-[#ded4c3] hover:bg-[#3a241a] px-4 py-3.5 rounded-full shadow-xl transition-all duration-300 hover:scale-105"
+      class="group flex items-center gap-2.5 bg-[#3D3532] text-[#ded4c3] hover:bg-[#2B2523] px-4 py-3.5 rounded-full shadow-xl transition-all duration-300 hover:scale-105"
     >
       <div class="relative">
         <i data-lucide="message-square" class="w-5 h-5"></i>
-        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#523426]"></span>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-[#3D3532]"></span>
       </div>
       <span class="text-xs font-semibold tracking-wide pr-1">Ajuda & Informações</span>
     </button>
@@ -1162,8 +1164,8 @@
     function appendMessage(text, isUser = false) {
       const msgDiv = document.createElement('div');
       msgDiv.className = isUser
-        ? 'bg-[#523426] text-[#ded4c3] p-3.5 rounded-2xl rounded-tr-sm self-end max-w-[85%] ml-auto leading-relaxed shadow-sm'
-        : 'bg-[#ede7dc] text-[#523426] p-3.5 rounded-2xl rounded-tl-sm border border-[#523426]/10 max-w-[88%] leading-relaxed shadow-sm';
+        ? 'bg-[#3D3532] text-[#ded4c3] p-3.5 rounded-2xl rounded-tr-sm self-end max-w-[85%] ml-auto leading-relaxed shadow-sm'
+        : 'bg-[#ede7dc] text-[#3D3532] p-3.5 rounded-2xl rounded-tl-sm border border-[#3D3532]/10 max-w-[88%] leading-relaxed shadow-sm';
       
       const formattedText = text
         .replace(/\n/g, '<br>')
